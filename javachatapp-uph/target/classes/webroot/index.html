@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <title>Join | ChatApp</title>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <div class="centered-form">
+            <div class="centered-form__form">
+                <form method="get" action="/chat" onsubmit="return validateForm()">
+                    <div class="form-field">
+                        <h3>Join a Chat</h3>
+                    </div>
+                    <div class="form-field">
+                        <label for="disp_name">Display name</label>
+                        <input type="text" name="name" id="disp_name" autofocus />
+                    </div>
+                    <div class="form-field">
+                        <label for="room_name">Room name</label>
+                        <input type="text" name="room" id="room_name" autofocus />
+                    </div>
+                    <div class="form-field">
+                        <button type="submit">Join</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function validateForm() {
+                let nameInput = document.querySelector('#disp_name');
+                let roomNameInput = document.querySelector('#room_name');
+                
+                if (nameInput.value === '' || roomNameInput.value === '') {
+                    alert('Name and room is required.');
+                    return false;
+                } else
+                    return true;
+            };
+            
+            window.onload = function(evt) {
+                let params = new URL(window.location).searchParams;
+            
+                if (params.get('error'))
+                    alert(params.get('error'));
+            };
+        </script>
+    </body>
+</html>
